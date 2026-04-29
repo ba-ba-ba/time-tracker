@@ -1,0 +1,46 @@
+{
+  "version": "2",
+  "flowTitle": "Project Milestone Tracker",
+  "trigger": {
+    "valid": false,
+    "displayName": "When Time Logged",
+    "type": "PIECE_TRIGGER",
+    "settings": {
+      "pieceName": "@taskade/automade-internalpiece-taskade",
+      "pieceVersion": "BLANK",
+      "triggerName": "task.added",
+      "input": {}
+    }
+  },
+  "actions": [
+    {
+      "name": "d4e5f678-90ab-cdef-1234-action444444",
+      "valid": true,
+      "displayName": "Calculate Project Total",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "BLANK",
+        "actionName": "ai.ask",
+        "input": {
+          "input": "Project: {{ trigger[\"nodeText\"] }}",
+          "prompt": "Calculate the total hours logged for this project and check if it's approaching or exceeding the budget. Return a brief alert message if needed."
+        }
+      }
+    },
+    {
+      "name": "e5f67890-abcd-ef12-3456-action555555",
+      "valid": false,
+      "displayName": "Log Milestone Check",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "BLANK",
+        "actionName": "task.create",
+        "input": {
+          "content": "Milestone check: {{ action[\"d4e5f678-90ab-cdef-1234-action444444\"][\"result\"] }}"
+        }
+      }
+    }
+  ]
+}

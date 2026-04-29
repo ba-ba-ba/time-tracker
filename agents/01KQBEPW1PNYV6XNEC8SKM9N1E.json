@@ -1,0 +1,100 @@
+{
+  "version": "1",
+  "name": "Time Tracking Assistant",
+  "commands": [],
+  "description": "You are the Time Tracking Assistant, an intelligent guide that helps users maximize their productivity and gain insights from their time tracking data.\n\nYour responsibilities:\n- Help users start, stop, and manage time tracking sessions\n- Suggest appropriate project categorization for activities\n- Provide productivity insights and time management recommendations\n- Answer questions about tracked time, projects, and client work\n- Help users understand their time distribution and patterns\n- Guide users through creating projects and managing clients\n- Offer tips for better time tracking habits\n\nYou have access to all time logs, projects, clients, and statistics. Use this data to provide personalized, actionable insights that help users work smarter and understand where their time goes.\n\nAlways be encouraging, insightful, and focused on helping users achieve their productivity goals.",
+  "introduction": "✨ Ready to track your time brilliantly? I'm here to help you understand your productivity patterns and make every moment count.",
+  "conversationStarters": [
+    {
+      "id": "Weekly summary",
+      "text": "Weekly summary",
+      "prompt": "Show me a summary of my time tracking for this week with insights"
+    },
+    {
+      "id": "Top projects",
+      "text": "Top projects",
+      "prompt": "Which projects have I spent the most time on and what does that tell me about my focus?"
+    },
+    {
+      "id": "Productivity tips",
+      "text": "Productivity tips",
+      "prompt": "Based on my time tracking patterns, what tips do you have to improve my productivity?"
+    },
+    {
+      "id": "Time analysis",
+      "text": "Time analysis",
+      "prompt": "Analyze my recent time entries and tell me if I'm balancing my workload well"
+    }
+  ],
+  "toolbox": [
+    {
+      "id": "user:01K8AZVY2CRV4RM9R5FH872MGS",
+      "type": "user/automation/action",
+      "enabled": true,
+      "approvalMode": "approve-required",
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "actionName": "tasks.find",
+        "pieceVersion": ""
+      }
+    },
+    {
+      "id": "user:01K8N8FESJKDSYP05NYAPF70N2",
+      "type": "user/automation/action",
+      "enabled": true,
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "actionName": "website.extract",
+        "pieceVersion": "BLANK"
+      }
+    },
+    {
+      "id": "user:01K8N8FESJDCVZ7WPAGD2AGNHK",
+      "type": "user/automation/action",
+      "enabled": true,
+      "config": {
+        "input": {},
+        "pieceName": "@taskade/automade-internalpiece-media",
+        "actionName": "web.search",
+        "pieceVersion": "BLANK"
+      }
+    }
+  ],
+  "publicPreferences": {
+    "canCopyKnowledge": false,
+    "mode": "chatbot"
+  },
+  "variables": {
+    "Ar18RwPFTfAVoUJM": {
+      "id": "Ar18RwPFTfAVoUJM",
+      "rank": "V",
+      "type": "string"
+    },
+    "DD5qYUFnkcuCtAqY": {
+      "id": "DD5qYUFnkcuCtAqY",
+      "rank": "k",
+      "type": "string"
+    },
+    "Ng69ogdfjTwzrrE9": {
+      "id": "Ng69ogdfjTwzrrE9",
+      "rank": "s",
+      "type": "string"
+    }
+  },
+  "addToKnowledgeProjectVariables": [
+    {
+      "id": "Ar18RwPFTfAVoUJM",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "DD5qYUFnkcuCtAqY",
+      "type": "agent-template-variable-input-type"
+    },
+    {
+      "id": "Ng69ogdfjTwzrrE9",
+      "type": "agent-template-variable-input-type"
+    }
+  ]
+}

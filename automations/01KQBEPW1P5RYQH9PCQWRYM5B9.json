@@ -1,0 +1,103 @@
+{
+  "version": "2",
+  "flowTitle": "Session Auto-Logger",
+  "trigger": {
+    "valid": true,
+    "type": "WEBHOOK",
+    "settings": {
+      "input": {
+        "type": "object",
+        "properties": {
+          "client": {
+            "type": "string",
+            "description": "Input for client"
+          },
+          "endTime": {
+            "type": "string",
+            "title": "End Time",
+            "format": "date-time",
+            "description": "When the session ended"
+          },
+          "project": {
+            "type": "string",
+            "description": "Input for project"
+          },
+          "duration": {
+            "type": "number",
+            "title": "Duration (minutes)",
+            "description": "Session duration in minutes"
+          },
+          "startTime": {
+            "type": "string",
+            "title": "Start Time",
+            "format": "date-time",
+            "description": "When the session started"
+          },
+          "description": {
+            "type": "string",
+            "description": "Input for description"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "actions": [
+    {
+      "name": "a1b2c3d4-e5f6-7890-abcd-action111111",
+      "valid": false,
+      "displayName": "Log Time Entry",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "BLANK",
+        "actionName": "task.create",
+        "input": {
+          "fields": {
+            "@clnt1": {
+              "data": {
+                "value": "{{ trigger[\"body\"][\"client\"] }}"
+              },
+              "rank": "2",
+              "fieldId": "@clnt1"
+            },
+            "@desc1": {
+              "data": {
+                "value": "{{ trigger[\"body\"][\"description\"] }}"
+              },
+              "rank": "3",
+              "fieldId": "@desc1"
+            },
+            "@dur01": {
+              "data": {
+                "value": "{{ trigger[\"body\"][\"duration\"] }}"
+              },
+              "rank": "0",
+              "fieldId": "@dur01"
+            },
+            "@proj1": {
+              "data": {
+                "value": "{{ trigger[\"body\"][\"project\"] }}"
+              },
+              "rank": "1",
+              "fieldId": "@proj1"
+            }
+          },
+          "content": "{{ trigger[\"body\"][\"project\"] }} - {{ trigger[\"body\"][\"description\"] }}",
+          "projectId": {
+            "type": "flow-template-variable-input-type",
+            "id": "Ar18RwPFTfAVoUJM"
+          }
+        }
+      }
+    }
+  ],
+  "variables": {
+    "Ar18RwPFTfAVoUJM": {
+      "id": "Ar18RwPFTfAVoUJM",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}

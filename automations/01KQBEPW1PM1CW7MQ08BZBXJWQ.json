@@ -1,0 +1,58 @@
+{
+  "version": "2",
+  "flowTitle": "Daily Summary Generator",
+  "trigger": {
+    "valid": false,
+    "displayName": "Daily at 11 PM",
+    "type": "PIECE_TRIGGER",
+    "settings": {
+      "pieceName": "@taskade/automade-internalpiece-schedule",
+      "pieceVersion": "BLANK",
+      "triggerName": "schedule.daily",
+      "input": {}
+    }
+  },
+  "actions": [
+    {
+      "name": "b2c3d4e5-f678-90ab-cdef-action222222",
+      "valid": false,
+      "displayName": "Find Today's Sessions",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-taskade",
+        "pieceVersion": "BLANK",
+        "actionName": "tasks.find",
+        "input": {
+          "projectId": {
+            "type": "flow-template-variable-input-type",
+            "id": "Ar18RwPFTfAVoUJM"
+          },
+          "rowsToReturn": "all_matching_rows"
+        }
+      }
+    },
+    {
+      "name": "c3d4e5f6-7890-abcd-ef12-action333333",
+      "valid": true,
+      "displayName": "Generate Summary",
+      "type": "PIECE",
+      "settings": {
+        "pieceName": "@taskade/automade-internalpiece-openai",
+        "pieceVersion": "BLANK",
+        "actionName": "ai.generate",
+        "input": {
+          "input": "{{ action[\"b2c3d4e5-f678-90ab-cdef-action222222\"] }}",
+          "prompt": "Analyze today's time tracking data and create a brief productivity summary with total hours, top projects, and insights."
+        }
+      }
+    }
+  ],
+  "variables": {
+    "Ar18RwPFTfAVoUJM": {
+      "id": "Ar18RwPFTfAVoUJM",
+      "rank": "V",
+      "type": "string",
+      "format": "taskade-project-id"
+    }
+  }
+}
